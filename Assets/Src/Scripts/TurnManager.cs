@@ -7,7 +7,7 @@ public class TurnManager {
     private class EventInfo {
         public float since;
         public float multiplier;
-
+ 
         public EventInfo(byte since, float multiplier) {
             this.since = since;
             this.multiplier = multiplier;

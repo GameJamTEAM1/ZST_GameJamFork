@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,14 @@ public class CPartyMember
     {
         m_szFirstName = szFirstName;
         m_szLastName = szLastName;
-        m_pPortrait = GameManager.Instance.RandomPortrait();
+        m_pPortrait = null;
+    }
+    
+    public CPartyMember(string szFirstName, string szLastName, Sprite pPortrait)
+    {
+        m_szFirstName = szFirstName;
+        m_szLastName = szLastName;
+        m_pPortrait = pPortrait;
     }
 
     public Sprite Portrait()

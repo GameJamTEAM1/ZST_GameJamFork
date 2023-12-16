@@ -18,31 +18,39 @@ public class GameManager : MonoBehaviour {
     
     #region Party Management
 
-    private string[] firstNames = new[]
+    private string[] MaleFirstNames = new[]
     {
         "Jan",
         "Maciej",
         "Bartosz",
-        "Magdalena",
         "Jakub",
         "Adrian",
-        "Jolanta",
         "Grzegorz",
-        "Małgorzata",
         "Adam",
         "Michał",
         "Artur",
         "Radomir",
-        "Anita",
-        "Marcelina",
         "Marcel",
         "Paweł",
         "Tomasz",
         "Maksymilian",
         "Gabriel",
         "Konrad",
-        "Ludmiła",
         "Jacek",
+    };
+    
+    private string[] FemaleFirstNames = new[]
+    {
+        "Magdalena",
+        "Jolanta",
+        "Małgorzata",
+        "Anita",
+        "Marcelina",
+        "Ludmiła",
+        "Martalena",
+        "Natalia",
+        "Wiesława",
+        "Cecylia",
     };
 
     private string[] lastNames = new[]
@@ -80,7 +88,8 @@ public class GameManager : MonoBehaviour {
     private List<CPartyMember> m_pRecruits;
     
     [Header("UI")]
-    [SerializeField] private Sprite[] m_pPortraits;
+    [SerializeField] private Sprite[] m_pMalePortraits;
+    [SerializeField] private Sprite[] m_pFemalePortraits;
 
     [SerializeField] private GameObject m_pRecruitPanel;
     
@@ -99,9 +108,14 @@ public class GameManager : MonoBehaviour {
         m_pCurrentParty.AddRecruit(pRecruit);
     }
     
-    public Sprite RandomPortrait()
+    public Sprite RandomMalePortrait()
     {
-        return Instance.Portraits()[Random.Range(0, Instance.Portraits().Length)];
+        return m_pMalePortraits[Random.Range(0, m_pMalePortraits.Length)];
+    }
+    
+    public Sprite RandomFemalePortrait()
+    {
+        return m_pFemalePortraits[Random.Range(0, m_pFemalePortraits.Length)];
     }
     #endregion
 
@@ -118,15 +132,32 @@ public class GameManager : MonoBehaviour {
 
         for (int i = 0; i < 3; i++)
         {
-            string firstName = firstNames[Random.Range(0, firstNames.Length)], lastName = lastNames[Random.Range(0, lastNames.Length)];
-
-            while (m_pRecruits.Contains(new CPartyMember(firstName, lastName)))
+            string firstName = "", lastName = lastNames[Random.Range(0, lastNames.Length)];
+            Sprite pPortrait = RandomMalePortrait();
+            if (Random.value < 0.5)
             {
-                firstName = firstNames[Random.Range(0, firstNames.Length)];
-                lastName = lastNames[Random.Range(0, lastNames.Length)];
+                pPortrait = RandomMalePortrait();
+                firstName = MaleFirstNames[Random.Range(0, MaleFirstNames.Length)];
+                while (m_pRecruits.Contains(new CPartyMember(firstName, lastName, pPortrait)))
+                {
+                    firstName = MaleFirstNames[Random.Range(0, MaleFirstNames.Length)];
+                    lastName = lastNames[Random.Range(0, lastNames.Length)];
+                    pPortrait = RandomMalePortrait();
+                }
+            }
+            else
+            {
+                pPortrait = RandomFemalePortrait();
+                firstName = FemaleFirstNames[Random.Range(0, FemaleFirstNames.Length)];
+                while (m_pRecruits.Contains(new CPartyMember(firstName, lastName, pPortrait)))
+                {
+                    firstName = FemaleFirstNames[Random.Range(0, FemaleFirstNames.Length)];
+                    lastName = lastNames[Random.Range(0, lastNames.Length)];
+                    pPortrait = RandomFemalePortrait();
+                }
             }
 
-            m_pRecruits.Add(new CPartyMember(firstName, lastName));
+            m_pRecruits.Add(new CPartyMember(firstName, lastName, pPortrait));
         }
 
         TM = new TurnManager();
@@ -200,10 +231,5 @@ public class GameManager : MonoBehaviour {
         this.turns++;
         
         Dispatcher.DispatchDateChanged(this, new CustomArgs.DateChangedArgs(this.gameDate, this.turns));
-    }
-    
-    public Sprite[] Portraits()
-    {
-        return m_pPortraits;
     }
 }

@@ -691,6 +691,170 @@ PrefabInstance:
       propertyPath: m_pPortraits.Array.data[0]
       value: 
       objectReference: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.size
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pFemalePortraits.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 81970ca8a2e7d0e478c21030fe56d297, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: b131f4d3edad8bd44b4918d28c700768, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1b349fa6b51a038448993dfc0c158359, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 73860634938c4df4288d0e1fa2e859c0, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 78948b4e425915248970c5e2ae2a55c1, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: ba954b4d29476f64d8b88d3c18862970, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 81985c1643e9e5946bbc59977de94b76, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 68b85941717bafe43abb152216c677c7, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 49277ff9de1a9424cadd7310bad08898, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: 79b935c6f91600141b663c90700c8131, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[10]
+      value: 
+      objectReference: {fileID: 21300000, guid: 357672fafbd69544f881653e6bc8d09c, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[11]
+      value: 
+      objectReference: {fileID: 21300000, guid: b391e3290a75e564db70c22ac1c8a95c, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[12]
+      value: 
+      objectReference: {fileID: 21300000, guid: 21b7b16a85dd0754680f002fb11aea8b, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[13]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7cd84a4f7c8a11243b1f19ab74255a6b, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[14]
+      value: 
+      objectReference: {fileID: 21300000, guid: 46235b128b45a474397f27085575f686, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[15]
+      value: 
+      objectReference: {fileID: 21300000, guid: d03b19d2c86954d44ad9d504e9d90034, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[16]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6d51abf2377085d4c9fe1fc171f66165, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[17]
+      value: 
+      objectReference: {fileID: 21300000, guid: 731225c55aa6ed0488bd0fdc39d60b93, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[18]
+      value: 
+      objectReference: {fileID: 21300000, guid: cd0a1c978b5882340b7dfa84d64bdcba, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[19]
+      value: 
+      objectReference: {fileID: 21300000, guid: b03763f5d2a4116479d568275484a1b8, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[20]
+      value: 
+      objectReference: {fileID: 21300000, guid: ebfd34a084f815b438e46470bcd54781, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[21]
+      value: 
+      objectReference: {fileID: 21300000, guid: a220dc9010c3ea644a76b931a1192fde, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[22]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2c1f23b08c281ea439ef005ab50bb61d, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[23]
+      value: 
+      objectReference: {fileID: 21300000, guid: a8a8b20fe6d1c464db5441317fd59cb4, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[24]
+      value: 
+      objectReference: {fileID: 21300000, guid: 54b4f4e60125e1d429b9f0a8269a46b7, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[25]
+      value: 
+      objectReference: {fileID: 21300000, guid: a814b689979f1b8439460d8eb45786a8, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[26]
+      value: 
+      objectReference: {fileID: 21300000, guid: 95925d4a20c6a6448bce9cb32a439b3a, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[27]
+      value: 
+      objectReference: {fileID: 21300000, guid: 265a1eb74e03f634fa06d60c2775ef83, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pMalePortraits.Array.data[28]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3f39187db945afb4db8ef28714f3f513, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pFemalePortraits.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3e2faab45029bd244ab6fb968e1eba75, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pFemalePortraits.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: fcea2dcf335e73148a133dffac0ab8e0, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pFemalePortraits.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4befd28ea3fa9b74e99fafded207089d, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pFemalePortraits.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d6b8995d98d6ee4683db071f6529d03, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pFemalePortraits.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6eef2fa23c2ce294aa8706081193ce78, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pFemalePortraits.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 52dac7869b1f4b64dbb288087cf7a2e9, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pFemalePortraits.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 371e931fca27a5148bbfc52d43b232d4, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pFemalePortraits.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: b9a64925c67b47b46b4b0ee0995bc39f, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pFemalePortraits.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3f4384bac3822f84f8f26bef86800f98, type: 3}
+    - target: {fileID: 804672405943738930, guid: ed8189cd249748e4689a52685f96694e, type: 3}
+      propertyPath: m_pFemalePortraits.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4888f22ab71141046955440a05e53d6c, type: 3}
     - target: {fileID: 1765024549787869947, guid: ed8189cd249748e4689a52685f96694e, type: 3}
       propertyPath: m_Name
       value: GameManager
