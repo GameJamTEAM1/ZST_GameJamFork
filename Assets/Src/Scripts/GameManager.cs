@@ -103,9 +103,9 @@ public class GameManager : MonoBehaviour {
         m_pCurrentParty = new CParty(name, type);
     }
 
-    public void RecruitToParty(CPartyMember pRecruit)
+    public bool RecruitToParty(CPartyMember pRecruit)
     {
-        m_pCurrentParty.AddRecruit(pRecruit);
+        return m_pCurrentParty.AddRecruit(pRecruit);
     }
     
     public Sprite RandomMalePortrait()
@@ -136,25 +136,22 @@ public class GameManager : MonoBehaviour {
             Sprite pPortrait = RandomMalePortrait();
             if (Random.value < 0.5)
             {
-                pPortrait = RandomMalePortrait();
-                firstName = MaleFirstNames[Random.Range(0, MaleFirstNames.Length)];
-                while (m_pRecruits.Contains(new CPartyMember(firstName, lastName, pPortrait)))
+                do
                 {
                     firstName = MaleFirstNames[Random.Range(0, MaleFirstNames.Length)];
                     lastName = lastNames[Random.Range(0, lastNames.Length)];
                     pPortrait = RandomMalePortrait();
-                }
+                } while (m_pRecruits.Contains(new CPartyMember(firstName, lastName, pPortrait)));
+
             }
             else
             {
-                pPortrait = RandomFemalePortrait();
-                firstName = FemaleFirstNames[Random.Range(0, FemaleFirstNames.Length)];
-                while (m_pRecruits.Contains(new CPartyMember(firstName, lastName, pPortrait)))
+                do
                 {
                     firstName = FemaleFirstNames[Random.Range(0, FemaleFirstNames.Length)];
                     lastName = lastNames[Random.Range(0, lastNames.Length)];
                     pPortrait = RandomFemalePortrait();
-                }
+                } while (m_pRecruits.Contains(new CPartyMember(firstName, lastName, pPortrait)));
             }
 
             m_pRecruits.Add(new CPartyMember(firstName, lastName, pPortrait));
@@ -178,35 +175,40 @@ public class GameManager : MonoBehaviour {
     private void OnGuiStateChange(Object s, GUIArgs e)
     {
         e.gui.SetActive(e.type == GUIArgs.EGuiEvent.OPEN);
-        if (e.gui.transform.parent.name.Equals("RecruitCanvas"))
+        if (e.gui.transform.parent.name.Equals("RecruitCanvas")) HandleCrucifixScreen(e.gui);
+    }
+
+    private void HandleCrucifixScreen(GameObject gui)
+    {
+        Debug.Log("Opened Recruit Canvas");
+        for (int i = 0; i < 3; i++)
         {
-            Debug.Log("Opened Recruit Canvas");
-            for (int i = 0; i < 3; i++)
+            CPartyMember pRecruit = m_pRecruits[i];
+            string name = string.Concat("Person", (i + 1));
+            Transform person = gui.transform.Find(name);
+            if (person == null)
             {
-                CPartyMember pRecruit = m_pRecruits[i];
-                string name = string.Concat("Person", (i + 1));
-                Transform person = e.gui.transform.Find(name);
-                if (person == null)
-                {
-                    Debug.LogError($"Could not find {name}");
-                    return;
-                }
-
-                Transform image = person.Find(String.Concat(name, " Image")),
-                    desc = person.Find(String.Concat(name, " Description")),
-                    recruitBtnT = person.Find(String.Concat("Button", i + 1));
-                Image portrait = image.GetComponent<Image>();
-                portrait.sprite = pRecruit.Portrait();
-
-                Text txt = desc.GetComponent<Text>();
-                txt.text = string.Concat(pRecruit.FirstName(), " ", pRecruit.LastName());
-
-                Button btn = recruitBtnT.GetComponent<Button>();
-                btn.onClick.AddListener(delegate
-                {
-                    RecruitToParty(pRecruit);
-                });
+                Debug.LogError($"Could not find {name}");
+                return;
             }
+
+            Transform image = person.Find(String.Concat(name, " Image")),
+                desc = person.Find(String.Concat(name, " Description")),
+                recruitBtnT = person.Find(String.Concat("Button", i + 1));
+            Image portrait = image.GetComponent<Image>();
+            portrait.sprite = pRecruit.Portrait();
+
+            Text txt = desc.GetComponent<Text>();
+            txt.text = string.Concat(pRecruit.FirstName(), " ", pRecruit.LastName());
+
+            Button btn = recruitBtnT.GetComponent<Button>();
+            btn.onClick.AddListener(delegate
+            {
+                if (RecruitToParty(pRecruit))
+                {
+                    btn.transform.Find("Text").GetComponent<Text>().text = "Recruited";
+                }
+            });
         }
     }
 

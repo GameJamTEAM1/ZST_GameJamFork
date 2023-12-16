@@ -68,7 +68,6 @@ public class CParty
     private List<CPartyMember> m_pMembers;
 
     private List<CPartyMember> m_pRecruitList;
-    // TODO: Add party's statistics ~GabrielV
 
     public CParty(PartyName eName, PartyType eType)
     {
@@ -149,15 +148,20 @@ public class CParty
         return null;
     }
 
-    public void AddMember(CPartyMember pMember)
+    public bool AddMember(CPartyMember pMember)
     {
+        if (HasMember(pMember)) return false;
+        Debug.Log($"Adding {pMember.FirstName()} {pMember.LastName()} to {Name()}");
         m_pMembers.Add(pMember);
+        return true;
     }
 
-    public void AddRecruit(CPartyMember pMember)
+    public bool AddRecruit(CPartyMember pMember)
     {
-        if (HasRecruit(pMember)) return;
+        if (HasRecruit(pMember)) return false;
+        Debug.Log($"Recruiting {pMember.FirstName()} {pMember.LastName()} for {Name()}");
         m_pRecruitList.Add(pMember);
+        return true;
     }
 
     public CPartyMember GetRecruit(string szFirstName, string szLastName)
