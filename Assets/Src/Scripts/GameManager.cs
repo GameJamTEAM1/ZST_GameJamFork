@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
     
     public GameDate gameDate = new GameDate();
+    public uint turns = 0;
     
     #region Party Management
 
@@ -165,7 +166,7 @@ public class GameManager : MonoBehaviour {
     
     private void LogDate(Object s, DateChangedArgs e)
     {
-        Debug.Log($"Hello World from T:{gameDate.Week}/M:{gameDate.Month}/R:{gameDate.Year}!");
+        Debug.Log($"T:{{gameDate.Week}}/M:{{gameDate.Month}}/R:{{gameDate.Year}} T:{{this.turns}}!");
     }
 
     private void Update() {
@@ -176,8 +177,9 @@ public class GameManager : MonoBehaviour {
 
     public void NextTurn() {
         gameDate.AddWeek();
+        this.turns++;
         
-        Dispatcher.DispatchDateChanged(this, new CustomArgs.DateChangedArgs(this.gameDate));
+        Dispatcher.DispatchDateChanged(this, new CustomArgs.DateChangedArgs(this.gameDate, this.turns));
     }
     
     public Sprite[] Portraits()

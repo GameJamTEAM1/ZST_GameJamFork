@@ -19,9 +19,9 @@ public class GameDate {
     }
 
     public GameDate() {
-        this.year = 2023;
-        this.month = 12;
-        this.week = 3;
+        this.year = 2024;
+        this.month = 1;
+        this.week = 1;
     }
 
     public GameDate(uint year, byte month, byte week) {

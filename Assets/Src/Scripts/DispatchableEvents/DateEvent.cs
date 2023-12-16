@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DateEvent : GameEvent<CustomArgs.DateChangedArgs> {
+    public class DateEvent : GameEvent<CustomArgs.DateChangedArgs> {
     private GameDate eventDate;
 
     public DateEvent(GameDate date) {
