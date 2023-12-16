@@ -11,7 +11,8 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
-    
+
+    public TurnManager TM { get; private set; }
     public GameDate gameDate = new GameDate();
     public uint turns = 0;
     
@@ -38,6 +39,10 @@ public class GameManager : MonoBehaviour {
         "Paweł",
         "Tomasz",
         "Maksymilian",
+        "Gabriel",
+        "Konrad",
+        "Ludmiła",
+        "Jacek",
     };
 
     private string[] lastNames = new[]
@@ -58,8 +63,21 @@ public class GameManager : MonoBehaviour {
         "Rossa",
         "Korwin",
         "Tic",
+        "Koszowski",
+        "Kempa",
+        "Bieniek",
+        "Kaczmarczyk",
+        "Bienio",
+        "Marciniak",
+        "Kaczmarski",
+        "Murański",
+        "Skowron",
+        "Stowron",
+        "Fiodorow",
+        "Jabłonowski",
+        "Jaworek",
     };
-    private CPartyMember[] m_pRecruits;
+    private List<CPartyMember> m_pRecruits;
     
     [Header("UI")]
     [SerializeField] private Sprite[] m_pPortraits;
@@ -78,7 +96,7 @@ public class GameManager : MonoBehaviour {
 
     public void RecruitToParty(CPartyMember pRecruit)
     {
-        m_pCurrentParty.AddMember(pRecruit);
+        m_pCurrentParty.AddRecruit(pRecruit);
     }
     
     public Sprite RandomPortrait()
@@ -96,20 +114,22 @@ public class GameManager : MonoBehaviour {
     
     private void Start() {
         CreateParty(CParty.PartyName.LEWICA, CParty.PartyType.RIGHT);
-        m_pRecruits = new CPartyMember[3];
+        m_pRecruits = new List<CPartyMember>();
 
         for (int i = 0; i < 3; i++)
         {
             string firstName = firstNames[Random.Range(0, firstNames.Length)], lastName = lastNames[Random.Range(0, lastNames.Length)];
 
-            while (m_pCurrentParty.HasMember(firstName, lastName))
+            while (m_pRecruits.Contains(new CPartyMember(firstName, lastName)))
             {
                 firstName = firstNames[Random.Range(0, firstNames.Length)];
                 lastName = lastNames[Random.Range(0, lastNames.Length)];
             }
 
-            m_pRecruits[i] = new CPartyMember(firstName, lastName);
+            m_pRecruits.Add(new CPartyMember(firstName, lastName));
         }
+
+        TM = new TurnManager();
     }
 
     private void OnEnable()
@@ -166,12 +186,12 @@ public class GameManager : MonoBehaviour {
     
     private void LogDate(Object s, DateChangedArgs e)
     {
-        Debug.Log($"T:{{gameDate.Week}}/M:{{gameDate.Month}}/R:{{gameDate.Year}} T:{{this.turns}}!");
+        Debug.Log($"T:{gameDate.Week}/M:{gameDate.Month}/R:{gameDate.Year} T:{this.turns}!");
     }
 
     private void Update() {
         if (Input.GetMouseButtonDown(1)) {
-            this.NextTurn();
+            TM.NextTurn();
         }
     }
 

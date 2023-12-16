@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnManager : MonoBehaviour {
+public class TurnManager {
     private class EventInfo {
         public float since;
         public float multiplier;
@@ -13,9 +13,7 @@ public class TurnManager : MonoBehaviour {
             this.multiplier = multiplier;
         }
     }
-
-    [SerializeField]
-    private GameObject gameManagerObject;
+    
     private GameManager GM;
     private EventInfo majorEvent = new EventInfo(0, 0);
     private EventInfo criticalEvent = new EventInfo(0, 0);
@@ -24,16 +22,15 @@ public class TurnManager : MonoBehaviour {
     private const uint ELECTIONS_ANNOUNCEMENT = 34;
     private const uint ELECTIONS = 40;
 
-    private void Start() {
-        this.GM = this.gameManagerObject.GetComponent<GameManager>();
-
+    public TurnManager() {
+        GM = GameManager.Instance;
         Dispatcher.DateChanged += (s, e) => {
             if (e.turns % POLL == 0 && e.turns % ELECTIONS != 0) {
-                Debug.Log("Sondaø!");
+                Debug.Log("Sonda≈º!");
             }
 
             if (e.turns % ELECTIONS_ANNOUNCEMENT == 0) {
-                Debug.Log("Nied≥ugo wybory!");
+                Debug.Log("Nied≈Çugo wybory!");
             }
 
             if (e.turns % ELECTIONS == 0) {
@@ -42,15 +39,14 @@ public class TurnManager : MonoBehaviour {
         };
     }
 
-    private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            this.GM.NextTurn();
-
-            GenerateEvent();
-        }
+    public void NextTurn()
+    {
+        GM.NextTurn();
+        GenerateEvent();
     }
 
     private void GenerateEvent() {
+        Debug.Log("GENERATE EVENT");
         if (criticalEvent.since >= 24) {
             GetEvent(EventType.CRITICAL);
 
@@ -95,10 +91,10 @@ public class TurnManager : MonoBehaviour {
     private void GetEvent(EventType type) {
         switch(type) {
             case EventType.MINOR:
-                Debug.Log("Zwyk≥y event!");
+                Debug.Log("Zwyk≈Çy event!");
                 break;
             case EventType.MAJOR:
-                Debug.Log("Waøny event!");
+                Debug.Log("Wa≈ºny event!");
                 break;
             case EventType.CRITICAL:
                 Debug.Log("Krytyczny event!");

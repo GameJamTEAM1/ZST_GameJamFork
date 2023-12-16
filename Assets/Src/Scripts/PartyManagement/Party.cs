@@ -120,9 +120,19 @@ public class CParty
         return m_pMembers.Contains(GetMember(szFirstName, szLastName));
     }
     
+    public bool HasMember(CPartyMember pMember)
+    {
+        return m_pMembers.Contains(pMember);
+    }
+    
     public bool HasRecruit(string szFirstName, string szLastName)
     {
         return m_pRecruitList.Contains(GetRecruit(szFirstName, szLastName));
+    }
+    
+    public bool HasRecruit(CPartyMember pRecruit)
+    {
+        return m_pRecruitList.Contains(pRecruit);
     }
     
     public CPartyMember GetMember(string szFirstName, string szLastName)
@@ -138,6 +148,7 @@ public class CParty
 
     public void AddRecruit(CPartyMember pMember)
     {
+        if (HasRecruit(pMember)) return;
         m_pRecruitList.Add(pMember);
     }
 
