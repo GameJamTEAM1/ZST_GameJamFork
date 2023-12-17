@@ -85,6 +85,20 @@ public class GameManager : MonoBehaviour {
         "Jabłonowski",
         "Jaworek",
     };
+
+    private string[] characterDescriptions = new[]
+    {
+        "Pracowita i uparta jak nikt, chce osiągnąć swój zamierzony cel za wszelką cene, nawet jeśli znaczy to spacer po trupach.Po mimo krótkim stażu politycznym (10 lat), lecz niezwykle intensywnym, zaczyna objawiać sie u niej powoli wypalenie zawodowe, co nie zmienia jej zaciętości w osiąganiu celów.",
+        "Leniwy, przez swój wiek i 25 lat na uczelni czasem zapomni jak się nazywa i gdzie się schodzi z mównicy, ale kiedy już na nią wstąpi to sam Piotr Skarga się chowa ze swoimi kazaniami. Genialny mówca, może nie zdobywa serc wyborców, ale jego oratorskie umiejętności przypominaja posłom gdzie ich miejsce.",
+        "Cichy, niezbyt wygadany działacz mniejszości litewskiej nie porywa za sobą tłumów ale ma zapewniany żelazny elektorat mniejszości liteswkiej dla, której działał przez lata. Wszelkie wywiady to nie jego broszka, akcent utrudnia mu zdobycie popularności zarówno u posłów jak i wyborców, jednak polscy litwini zawsze będą go wspierać.",
+        "Weterynarz z zawodu, myśliwy z zamiłowania. Lata spędzone w lesie i w gabinecie weterynarskim ukształtowały jego twardy charakter. Potężna postura i silny charakter powoduje że na kazdym wydarzeniu na którym się pojawi natychmiast dominuje swoich przeciwników. Z tak silną osobowością się nie debatuje.",
+        "Młody, lekkomyślny i piekielnie ładny. Ten człowiek to idealny przykład jak samym wyglądem można zwojować tłumy. Jest dosy wyszczekany, a czasem wręcz bezczelny, jednak jego posągowe rysy w czasie wywiadu rekompensują wszystkie farmazony które mówi.",
+        "Szanowany inżynier budowlany, prosty, swojski chłop; Czasem jednak podczsas wywiadu może mu wystać słoma z butów, jednak jest to jeden z lepszych specjalistów w swoim fachu.",
+        "Młoda, drobna specjalistka od PR i wizerunku medialnego. Wie jak dobrze zaprezentować partie a co ważniejsze siebie. Niezbyt sobie radzi z papierkową robotą, ale jednym spojrzeniem, jednym słowem jest w stanie zjednać sobie kamery i światło, tak aby uzyskać jak najlepszy wynik.",
+        "Szanowany neurochirurg, mówi żargonem i często jego rozmówcy nie za bardzo rozumieją przesłanie tego co mówi, ale to co go wyróżnia to absolutny i niezbywalny autorytet w środowisku lekarskim. Jego fachowy i specjalistyczny język utrudnia mu zjednanie sobie wyborców, jednak jego olbrzymia wiedza i autorytet powoduje że cieszy się on sporym poparciem wśród kolegów po fachu.",
+        "Profesor prawa, prawdziwy buldog i policyjny bulterier. Pod jej okeim nie prześlizgnął się żaden cwaniak starający się oszukać na podatkach, po kryjomu wziąc łapówke czy też dostać nieco lepsze finansowanie od państwa. Niezrównana sobie specjalistka, określana przez osadzonych jako \"Audytorski Esesman\", praca w komisjach to jej główne środowisko, jednak jej popularna twarz kojarzona z profesjonalizmem i bezwzględnością może z jednej strony wielu wyborców przyciągnąć, zarówno jak i odepchnąć od partii.",
+        "Głośny, kontrowersyjny i niewykształcony idiota, pomimo swoich często skandalicznych wypowiedzi, ludzie (szczególnie w internecie) kochają go za bycie bezpośrednim, jednak często ta bezpośredniość stoi w opozycji z powagą izby sejmowej. Lokalne działania, obecność na protestach to coś co woli znacznie bardziej niż głosowania i posiedzenia kolejnych komisjii.",
+    };
     private List<CPartyMember> m_pRecruits;
     
     [Header("UI")]
@@ -154,7 +168,7 @@ public class GameManager : MonoBehaviour {
                 } while (m_pRecruits.Contains(new CPartyMember(firstName, lastName, pPortrait)));
             }
 
-            m_pRecruits.Add(new CPartyMember(firstName, lastName, pPortrait));
+            m_pRecruits.Add(new CPartyMember(firstName, lastName, characterDescriptions[Random.Range(0, characterDescriptions.Length)], pPortrait));
         }
 
         TM = new TurnManager();
@@ -199,7 +213,7 @@ public class GameManager : MonoBehaviour {
             portrait.sprite = pRecruit.Portrait();
 
             Text txt = desc.GetComponent<Text>();
-            txt.text = string.Concat(pRecruit.FirstName(), " ", pRecruit.LastName());
+            txt.text = string.Concat(pRecruit.FirstName(), " ", pRecruit.LastName(), "\n", pRecruit.Description());
 
             Button btn = recruitBtnT.GetComponent<Button>();
             btn.onClick.AddListener(delegate

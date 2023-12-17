@@ -5,8 +5,52 @@ using UnityEngine;
 
 public class CPartyMember
 {
-    private string m_szFirstName, m_szLastName;
+    public enum EPastOccupation
+    {
+        None = -1,
+        Doctor,
+        MilVeteran,
+        Teacher,
+        Engineer,
+        ZUS,
+        Lawyer,
+    }
+
+    public static string[] PastOccupation = new[]
+    {
+        "Lekarz", "Weteran Wojskowy", "Nauczyciel", "Inżynier", "Audytor ZUS", "Prawnik"
+    };
+
+    public enum EPersonality
+    {
+        None = -1,
+        EasilyAgitated,
+        Controversial,
+        GreatSpeaker,
+        Stutterer,
+        NonWise,
+        Calm,
+        Sleepy,
+        HardWorking,
+        Lazy,
+    }
+
+    public static string[] Personality = new[]
+    {
+        "Szybko się denerwuje: Szansa na blamaż podczas wywiadu zwiększa się.",
+        "Kontrowersyjny: Jego negatywne działania mają **duży** efekt na sondaże.",
+        "Świetny mówca: Wszelkie działania związane z wygłaszaniem mają automatycznie lepszy pozytywny efekt.",
+        "Jąkajła: Wszelkie działania związane z wygłaszaniem maja automatycznie gorszy negatywny efekt.",
+        "Lekkomyślny: Szansa na odwalenie czegoś dziwnego w czasie interwencji poselskiej jest większa.",
+        "Stoik: Każdy wywiad i interwencja ma mały wpływ na sondaż, ale szansa na negatywne efekty jest niższa.",
+        "Śpioch: Szansa na niepojawienie się na dane działanie jest większa.",
+        "Pracowity: Szansa na pozytywne efekty raportu komisjii sejmowych jest większa.",
+        "Leniwy: Szansa na negatywne efekty raportu komisjii sejmowych jest większa."
+    };
+    
+    private string m_szFirstName, m_szLastName, m_szDescription;
     private Sprite m_pPortrait;
+    private uint PP_Cost;
     
     public CPartyMember(string szFirstName, string szLastName)
     {
@@ -19,6 +63,14 @@ public class CPartyMember
     {
         m_szFirstName = szFirstName;
         m_szLastName = szLastName;
+        m_pPortrait = pPortrait;
+    }
+
+    public CPartyMember(string szFirstName, string szLastName, string szDescription, Sprite pPortrait)
+    {
+        m_szFirstName = szFirstName;
+        m_szLastName = szLastName;
+        m_szDescription = szDescription;
         m_pPortrait = pPortrait;
     }
 
@@ -35,6 +87,11 @@ public class CPartyMember
     public string LastName()
     {
         return m_szLastName;
+    }
+
+    public string Description()
+    {
+        return m_szDescription;
     }
 
     public bool Equals(string szFirstName, string szLastName)
