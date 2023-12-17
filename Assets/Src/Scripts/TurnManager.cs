@@ -17,6 +17,9 @@ public class TurnManager : MonoBehaviour {
     [SerializeField]
     private GameObject gameManagerObject;
     private GameManager GM;
+    private MinorEventProvider minorEventProvider;
+    private MajorEventProvider majorEventProvider;
+    private CriticalEventProvider criticalEventProvider;
     private EventInfo majorEvent = new EventInfo(0, 0);
     private EventInfo criticalEvent = new EventInfo(0, 0);
 
@@ -27,23 +30,27 @@ public class TurnManager : MonoBehaviour {
     private void Start() {
         this.GM = this.gameManagerObject.GetComponent<GameManager>();
 
+        minorEventProvider = this.GetComponent<MinorEventProvider>();
+        majorEventProvider = this.GetComponent<MajorEventProvider>();
+        criticalEventProvider = this.GetComponent<CriticalEventProvider>();
+
         Dispatcher.DateChanged += (s, e) => {
             if (e.turns % POLL == 0 && e.turns % ELECTIONS != 0) {
-                Debug.Log("Sonda¿!");
+                GM.ECV.DispatchEventCanvas(new EventProvider($"Sonda¿.\n\nNasz wynik: {(GM.m_pCurrentParty.PPS * 100).ToString("0.00")}%", "", null));
             }
 
             if (e.turns % ELECTIONS_ANNOUNCEMENT == 0) {
-                Debug.Log("Nied³ugo wybory!");
+                GM.ECV.DispatchEventCanvas(new EventProvider("Za nied³ugo przeprowadzone zostan¹ wybory do Sejmu.", "", null));
             }
 
             if (e.turns % ELECTIONS == 0) {
-                Debug.Log("Wybory!!!");
+                GM.ECV.DispatchEventCanvas(new EventProvider("Wybory zosta³y przeprowadzone, a wyniki policzone.", "", null));
             }
         };
     }
 
     private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(1)) {
             this.GM.NextTurn();
 
             GenerateEvent();
@@ -66,7 +73,7 @@ public class TurnManager : MonoBehaviour {
             majorEvent.multiplier = 0;
         }
         else {
-            int random = UnityEngine.Random.Range(1, 100);
+            int random = UnityEngine.Random.Range(1, 100 + 1);
 
             if (Math.Floor(random + criticalEvent.multiplier) >= 98) {
                 criticalEvent.since = 0;
@@ -95,13 +102,19 @@ public class TurnManager : MonoBehaviour {
     private void GetEvent(EventType type) {
         switch(type) {
             case EventType.MINOR:
-                Debug.Log("Zwyk³y event!");
+                var minor = minorEventProvider.ProvideRandomEvent();
+
+                GM.ECV.DispatchEventCanvas(minor);
                 break;
             case EventType.MAJOR:
-                Debug.Log("Wa¿ny event!");
+                var major = majorEventProvider.ProvideRandomEvent();
+
+                GM.ECV.DispatchEventCanvas(major);
                 break;
             case EventType.CRITICAL:
-                Debug.Log("Krytyczny event!");
+                var critical = criticalEventProvider.ProvideRandomEvent();
+
+                GM.ECV.DispatchEventCanvas(critical);
                 break;
         }
     }
