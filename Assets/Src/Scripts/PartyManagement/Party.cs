@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CPartyMember
 {
@@ -16,7 +17,7 @@ public class CPartyMember
         Lawyer,
     }
 
-    public static string[] PastOccupation = new[]
+    public static string[] PastOccupationStrings = new[]
     {
         "Lekarz", "Weteran Wojskowy", "Nauczyciel", "Inżynier", "Audytor ZUS", "Prawnik"
     };
@@ -35,7 +36,7 @@ public class CPartyMember
         Lazy,
     }
 
-    public static string[] Personality = new[]
+    public static string[] PersonalityStrings = new[]
     {
         "Szybko się denerwuje: Szansa na blamaż podczas wywiadu zwiększa się.",
         "Kontrowersyjny: Jego negatywne działania mają **duży** efekt na sondaże.",
@@ -51,6 +52,8 @@ public class CPartyMember
     private string m_szFirstName, m_szLastName, m_szDescription;
     private Sprite m_pPortrait;
     private uint PP_Cost;
+    private EPersonality Personality;
+    private EPastOccupation PastOccupation;
     
     public CPartyMember(string szFirstName, string szLastName)
     {
@@ -72,6 +75,8 @@ public class CPartyMember
         m_szLastName = szLastName;
         m_szDescription = szDescription;
         m_pPortrait = pPortrait;
+        Personality = (EPersonality)Random.Range(0, ((int)EPersonality.Lazy)+1);
+        PastOccupation = (EPastOccupation)Random.Range(0, ((int)EPastOccupation.Lawyer)+1);
     }
 
     public Sprite Portrait()
@@ -97,6 +102,11 @@ public class CPartyMember
     public bool Equals(string szFirstName, string szLastName)
     {
         return m_szFirstName.Equals(szFirstName) && m_szLastName.Equals(szLastName);
+    }
+
+    public override string ToString()
+    {
+        return $"name: {m_szFirstName} {m_szLastName}, personality: {PersonalityStrings[(int)Personality]}, pastOcc: {PastOccupationStrings[(int)PastOccupation]}";
     }
 }
 
@@ -217,6 +227,7 @@ public class CParty
     {
         if (HasRecruit(pMember)) return false;
         Debug.Log($"Recruiting {pMember.FirstName()} {pMember.LastName()} for {Name()}");
+        Debug.Log($"Recruit: {pMember}");
         m_pRecruitList.Add(pMember);
         return true;
     }
