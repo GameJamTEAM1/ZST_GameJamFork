@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Object = System.Object;
 using Random = UnityEngine.Random;
@@ -27,15 +28,15 @@ public class GameManager : MonoBehaviour {
         "Adrian",
         "Jolanta",
         "Grzegorz",
-        "Małgorzata",
+        "Ma�gorzata",
         "Adam",
-        "Michał",
+        "Micha�",
         "Artur",
         "Radomir",
         "Anita",
         "Marcelina",
         "Marcel",
-        "Paweł",
+        "Pawe�",
         "Tomasz",
         "Maksymilian",
     };
@@ -43,18 +44,18 @@ public class GameManager : MonoBehaviour {
     private string[] lastNames = new[]
     {
         "Sitek",
-        "Mądry",
-        "Gadziński",
+        "M�dry",
+        "Gadzi�ski",
         "Sosna",
         "Kukla",
         "Nowak",
         "Kowalski",
         "Bosak",
         "Braun",
-        "Kaczyński",
+        "Kaczy�ski",
         "Tusk",
         "Morawiecki",
-        "Hołownia",
+        "Ho�ownia",
         "Rossa",
         "Korwin",
         "Tic",
@@ -69,7 +70,7 @@ public class GameManager : MonoBehaviour {
     /// <summary>
     /// Current player's Political Party
     /// </summary>
-    private CParty m_pCurrentParty;
+    public CParty m_pCurrentParty;
     
     public void CreateParty(CParty.PartyName name, CParty.PartyType type)
     {
@@ -185,5 +186,15 @@ public class GameManager : MonoBehaviour {
     public Sprite[] Portraits()
     {
         return m_pPortraits;
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Hub");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
