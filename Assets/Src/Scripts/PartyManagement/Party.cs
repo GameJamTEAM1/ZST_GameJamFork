@@ -84,6 +84,16 @@ public class CPartyMember
         return m_pPortrait;
     }
 
+    public EPersonality GetPersonality()
+    {
+        return Personality;
+    }
+
+    public EPastOccupation GetPastOccupation()
+    {
+        return PastOccupation;
+    }
+
     public string FirstName()
     {
         return m_szFirstName;
