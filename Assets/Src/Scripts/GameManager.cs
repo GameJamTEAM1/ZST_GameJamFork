@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour {
@@ -12,7 +13,7 @@ public class GameManager : MonoBehaviour {
     /// <summary>
     /// Current player's Political Party
     /// </summary>
-    private CParty m_pCurrentParty;
+    public CParty m_pCurrentParty;
     
     public void CreateParty(CParty.PartyName name, CParty.PartyType type)
     {
@@ -56,5 +57,15 @@ public class GameManager : MonoBehaviour {
     public Sprite[] Portraits()
     {
         return m_pPortraits;
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Hub");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
