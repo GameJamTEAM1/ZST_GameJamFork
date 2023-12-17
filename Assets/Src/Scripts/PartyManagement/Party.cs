@@ -54,11 +54,10 @@ public class CParty
     
     private PartyName m_eName;
     private PartyType m_eType;
-    private uint partyPrivilges;
-    private byte polePartySupport;
-    private byte realPartySupport;
+    private int partyPrivilges;
+    private float polePartySupport;
+    private float realPartySupport;
     private List<CPartyMember> m_pMembers;
-
     private List<CPartyMember> m_pRecruitList;
     // TODO: Add party's statistics ~GabrielV
 
@@ -69,11 +68,14 @@ public class CParty
         m_eName = eName;
         m_eType = eType;
         PP = 100;
-        PPS = 100;
-        RPS = 100;
+        PPS = 0.1f;
+        RPS = 0.1f;
+
+        m_pMembers.Add(new CPartyMember("test", "testowaty"));
+        m_pRecruitList.Add(new CPartyMember("test2", "testowaty2"));
     }
     
-    public uint PP {
+    public int PP {
         set {
             this.partyPrivilges = value;
         }
@@ -82,8 +84,11 @@ public class CParty
         }
     }
 
-    public byte PPS {
+    public float PPS {
         set {
+            if (value > 1f) this.polePartySupport = 1;
+            if (value < 0f) this.polePartySupport = 0;
+            
             this.polePartySupport = value;
         }
         get {
@@ -91,8 +96,11 @@ public class CParty
         }
     }
 
-    public byte RPS {
+    public float RPS {
         set {
+            if (value > 1f) this.realPartySupport = 1;
+            if (value < 0f) this.realPartySupport = 0;
+
             this.realPartySupport = value;
         }
         get {
@@ -165,5 +173,33 @@ public class CParty
     public void RemoveMember(CPartyMember pMember)
     {
         m_pMembers.Remove(pMember);
+    }
+
+    public CPartyMember GetRandomMember() {
+        if (this.m_pMembers.Count == 0) return null;
+
+        var index = Random.Range(0, this.m_pMembers.Count);
+
+        return this.m_pMembers[index];
+    }
+
+    public CPartyMember GetRandomRecruit() {
+        if (this.m_pRecruitList.Count == 0) return null;
+
+        var index = Random.Range(0, this.m_pRecruitList.Count);
+
+        return this.m_pRecruitList[Random.Range(0, this.m_pRecruitList.Count)];
+    }
+
+    public string GetRandomMemberFullName() {
+        var member = GetRandomMember();
+
+        return $"{member.FirstName()} {member.LastName()}";
+    }
+
+    public string GetRandomRecruitFullName() {
+        var member = GetRandomRecruit();
+
+        return $"{member.FirstName()} {member.LastName()}";
     }
 }

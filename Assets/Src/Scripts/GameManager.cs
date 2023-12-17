@@ -11,7 +11,11 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
-    
+
+    [SerializeField]
+    private GameObject eventCanvasPrefab;
+    public EventCanvasHandler ECV;
+
     public GameDate gameDate = new GameDate();
     public uint turns = 0;
     
@@ -69,12 +73,7 @@ public class GameManager : MonoBehaviour {
     /// <summary>
     /// Current player's Political Party
     /// </summary>
-    private CParty m_pCurrentParty;
-    
-    public void CreateParty(CParty.PartyName name, CParty.PartyType type)
-    {
-        m_pCurrentParty = new CParty(name, type);
-    }
+    public CParty m_pCurrentParty;
 
     public void RecruitToParty(CPartyMember pRecruit)
     {
@@ -92,18 +91,16 @@ public class GameManager : MonoBehaviour {
         if (Instance != null && Instance != this) Destroy(this);
         Instance = this;
         DontDestroyOnLoad(this);
-    }
-    
-    private void Start() {
-        CreateParty(CParty.PartyName.LEWICA, CParty.PartyType.RIGHT);
+
+        m_pCurrentParty = new CParty(CParty.PartyName.KONFEDERACJA, CParty.PartyType.RIGHT);
         m_pRecruits = new CPartyMember[3];
 
-        for (int i = 0; i < 3; i++)
-        {
+        ECV = new EventCanvasHandler(eventCanvasPrefab);
+
+        for (int i = 0; i < 3; i++) {
             string firstName = firstNames[Random.Range(0, firstNames.Length)], lastName = lastNames[Random.Range(0, lastNames.Length)];
 
-            while (m_pCurrentParty.HasMember(firstName, lastName))
-            {
+            while (m_pCurrentParty.HasMember(firstName, lastName)) {
                 firstName = firstNames[Random.Range(0, firstNames.Length)];
                 lastName = lastNames[Random.Range(0, lastNames.Length)];
             }
@@ -166,13 +163,7 @@ public class GameManager : MonoBehaviour {
     
     private void LogDate(Object s, DateChangedArgs e)
     {
-        Debug.Log($"T:{{gameDate.Week}}/M:{{gameDate.Month}}/R:{{gameDate.Year}} T:{{this.turns}}!");
-    }
-
-    private void Update() {
-        if (Input.GetMouseButtonDown(1)) {
-            this.NextTurn();
-        }
+        Debug.Log($"T:{gameDate.Week}/M:{gameDate.Month}/R:{gameDate.Year} T:{this.turns}!");
     }
 
     public void NextTurn() {
