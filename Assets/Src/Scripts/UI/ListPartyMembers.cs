@@ -20,10 +20,7 @@ public class ListPartyMembers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Add(text);
-        }
+
     }
 
     public void Add(GameObject element)
